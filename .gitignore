@@ -1,0 +1,7 @@
+/packages/
+bin/
+Debug/
+obj/
+Release/
+*.user
+*.suo
