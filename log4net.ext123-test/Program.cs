@@ -1,4 +1,4 @@
-﻿namespace log4net.ext123_test
+﻿namespace log4net.ext123
 {
 	class Program
 	{
