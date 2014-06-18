@@ -11,21 +11,69 @@ namespace log4net.ext123
 	public interface ILog123 : ILoggerWrapper
 	{
 		bool IsTraceEnabled { get; }
+		bool IsDebugEnabled { get; }
+		bool IsInfoEnabled { get; }
+		bool IsWarnEnabled { get; }
+		bool IsErrorEnabled { get; }
+		bool IsFatalEnabled { get; }
+
 		void Trace(object message);
+		void Debug(object message);
+		void Info(object message);
+		void Warn(object message);
+		void Error(object message);
+		void Fatal(object message);
+
 		void Trace(string format, params object[] args);
 		void Trace(Exception e, string format=null, params object[] args);
 	}
+
 
 	public class Log123Impl : LoggerWrapperImpl, ILog123, ILoggerWrapper
 	{
 		private static readonly Type ThisDeclaringType = typeof (Log123Impl);
 		private Level myLevelTrace;
+		private Level myLevelDebug;
+		private Level myLevelInfo;
+		private Level myLevelWarn;
+		private Level myLevelError;
+		private Level myLevelFatal;
 
 		public virtual bool IsTraceEnabled { get { return Logger.IsEnabledFor(myLevelTrace); } }
+		public virtual bool IsDebugEnabled { get { return Logger.IsEnabledFor(myLevelDebug); } }
+		public virtual bool IsInfoEnabled { get { return Logger.IsEnabledFor(myLevelInfo); } }
+		public virtual bool IsWarnEnabled { get { return Logger.IsEnabledFor(myLevelWarn); } }
+		public virtual bool IsErrorEnabled { get { return Logger.IsEnabledFor(myLevelError); } }
+		public virtual bool IsFatalEnabled { get { return Logger.IsEnabledFor(myLevelFatal); } }
 
 		public virtual void Trace(object message) {
 			if (!IsTraceEnabled) return;
 			Logger.Log(ThisDeclaringType, myLevelTrace, message, null);
+		}
+
+		public virtual void Debug(object message) {
+			if (!IsDebugEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelDebug, message, null);
+		}
+
+		public virtual void Info(object message) {
+			if (!IsInfoEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelInfo, message, null);
+		}
+
+		public virtual void Warn(object message) {
+			if (!IsWarnEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelWarn, message, null);
+		}
+
+		public virtual void Error(object message) {
+			if (!IsErrorEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelError, message, null);
+		}
+
+		public virtual void Fatal(object message) {
+			if (!IsFatalEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelFatal, message, null);
 		}
 
 		public virtual void Trace(string format, params object[] args) {
@@ -46,7 +94,13 @@ namespace log4net.ext123
 
 		protected virtual void ReloadLevels(ILoggerRepository repository)
 		{
-			myLevelTrace = repository.LevelMap.LookupWithDefault(Level.Trace);
+			var m = repository.LevelMap;
+			myLevelTrace = m.LookupWithDefault(Level.Trace);
+			myLevelDebug = m.LookupWithDefault(Level.Debug);
+			myLevelInfo = m.LookupWithDefault(Level.Info);
+			myLevelWarn = m.LookupWithDefault(Level.Warn);
+			myLevelError = m.LookupWithDefault(Level.Error);
+			myLevelFatal = m.LookupWithDefault(Level.Fatal);
 		}
 
 		private void LoggerRepositoryConfigurationChanged(object sender, EventArgs e)
@@ -56,6 +110,7 @@ namespace log4net.ext123
 			ReloadLevels(repository);
 		}
 	}
+
 
 	public class Log123Manager
 	{
