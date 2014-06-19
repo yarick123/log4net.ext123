@@ -25,9 +25,15 @@ namespace log4net.ext123
 						<conversionPattern value='%level - %message;' />
 					</layout>
 				</appender>
+				<appender name='StringAppenderEx' type='log4net.Tests.Appender.StringAppender'>
+					<layout type='log4net.Layout.PatternLayout'>
+						<conversionPattern value='%level - %message: %stacktracedetail!!' />
+					</layout>
+				</appender>
 				<root>
 					<level value='ALL' />
 					<appender-ref ref='StringAppender' />
+					<appender-ref ref='StringAppenderEx' />
 				</root>
 				<logger name='W'>
 					<level value='WARN' />
@@ -104,6 +110,32 @@ namespace log4net.ext123
 			log.Fatal("f {0}", 6);
 
 			Assert.AreEqual("WARN - w 4;ERROR - e 5;FATAL - f 6;", appender.GetString());
+		}
+
+		[Test]
+		public void Test_LogException() {
+			string repoName = getLogRepo2Test();
+			ILog123 log = Log123Manager.GetLogger(repoName, "a");
+
+			var e = new Exception("TeSt");
+			log.Trace(e);
+
+			var appender = (StringAppender)LogManager.GetRepository(repoName).GetAppenders()[0];
+			var appenderEx = (StringAppender)LogManager.GetRepository(repoName).GetAppenders()[1];
+			Assert.AreEqual("TRACE - TeSt;System.Exception: TeSt", appender.GetString().TrimEnd());
+			Assert.AreEqual("TRACE - TeSt: log4net.ext123.Log123_test.Test_LogException()!!System.Exception: TeSt", appenderEx.GetString().TrimEnd());
+			appender.Reset();
+			appenderEx.Reset();
+
+			log.Error(e, "Message {0}");
+			Assert.AreEqual("ERROR - Message {0};System.Exception: TeSt", appender.GetString().TrimEnd());
+			Assert.AreEqual("ERROR - Message {0}: log4net.ext123.Log123_test.Test_LogException()!!System.Exception: TeSt", appenderEx.GetString().TrimEnd());
+			appender.Reset();
+			appenderEx.Reset();
+
+			log.Error(e, "Message {0}", 1);
+			Assert.AreEqual("ERROR - Message 1;System.Exception: TeSt", appender.GetString().TrimEnd());
+			Assert.AreEqual("ERROR - Message 1: log4net.ext123.Log123_test.Test_LogException()!!System.Exception: TeSt", appenderEx.GetString().TrimEnd());
 		}
 	}
 
