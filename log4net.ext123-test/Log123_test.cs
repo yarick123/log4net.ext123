@@ -84,6 +84,27 @@ namespace log4net.ext123
 
 			Assert.AreEqual("WARN - warn;ERROR - Message;FATAL - 50;", appender.GetString());
 		}
+
+		[Test]
+		public void Test_LogFormat() {
+			string repoName = getLogRepo2Test();
+			ILog123 log = Log123Manager.GetLogger(repoName, "a");
+
+			log.Trace("t {0}");
+			log.Trace("t {0}", 1);
+			log.Debug("d {0}", 2);
+			log.Info("i {0}", 3);
+
+			var appender = (StringAppender)LogManager.GetRepository(repoName).GetAppenders()[0];
+			Assert.AreEqual("TRACE - t {0};TRACE - t 1;DEBUG - d 2;INFO - i 3;", appender.GetString());
+			appender.Reset();
+
+			log.Warn("w {0}", 4);
+			log.Error("e {0}", 5);
+			log.Fatal("f {0}", 6);
+
+			Assert.AreEqual("WARN - w 4;ERROR - e 5;FATAL - f 6;", appender.GetString());
+		}
 	}
 
 

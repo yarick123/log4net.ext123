@@ -24,7 +24,20 @@ namespace log4net.ext123
 		void Error(object message);
 		void Fatal(object message);
 
+		void Trace(string message);
+		void Debug(string message);
+		void Info(string message);
+		void Warn(string message);
+		void Error(string message);
+		void Fatal(string message);
+
 		void Trace(string format, params object[] args);
+		void Debug(string format, params object[] args);
+		void Info(string format, params object[] args);
+		void Warn(string format, params object[] args);
+		void Error(string format, params object[] args);
+		void Fatal(string format, params object[] args);
+
 		void Trace(Exception e, string format=null, params object[] args);
 	}
 
@@ -76,9 +89,64 @@ namespace log4net.ext123
 			Logger.Log(ThisDeclaringType, myLevelFatal, message, null);
 		}
 
+		public virtual void Trace(string message) {
+			if (!IsTraceEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelTrace, message, null);
+		}
+
+		public virtual void Debug(string message) {
+			if (!IsDebugEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelDebug, message, null);
+		}
+
+		public virtual void Info(string message) {
+			if (!IsInfoEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelInfo, message, null);
+		}
+
+		public virtual void Warn(string message) {
+			if (!IsWarnEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelWarn, message, null);
+		}
+
+		public virtual void Error(string message) {
+			if (!IsErrorEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelError, message, null);
+		}
+
+		public virtual void Fatal(string message) {
+			if (!IsFatalEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelFatal, message, null);
+		}
+
 		public virtual void Trace(string format, params object[] args) {
 			if (!IsTraceEnabled) return;
 			Logger.Log(ThisDeclaringType, myLevelTrace, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
+		}
+
+		public virtual void Debug(string format, params object[] args) {
+			if (!IsDebugEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelDebug, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
+		}
+
+		public virtual void Info(string format, params object[] args) {
+			if (!IsInfoEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelInfo, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
+		}
+
+		public virtual void Warn(string format, params object[] args) {
+			if (!IsWarnEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelWarn, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
+		}
+
+		public virtual void Error(string format, params object[] args) {
+			if (!IsErrorEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelError, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
+		}
+
+		public virtual void Fatal(string format, params object[] args) {
+			if (!IsFatalEnabled) return;
+			Logger.Log(ThisDeclaringType, myLevelFatal, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
 		}
 
 		public virtual void Trace(Exception e, string format = null, params object[] args) {
