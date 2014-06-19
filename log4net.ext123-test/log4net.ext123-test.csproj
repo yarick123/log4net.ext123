@@ -7,7 +7,7 @@
     <ProjectGuid>{148BFA13-D379-43C7-A3DE-AE0FFCDCBBB2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>log4net.ext123_test</RootNamespace>
+    <RootNamespace>log4net.ext123</RootNamespace>
     <AssemblyName>log4net.ext123-test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,11 +40,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Log123_test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="StringAppender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
