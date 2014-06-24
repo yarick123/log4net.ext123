@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Log123.cs" />
+    <Compile Include="Log123Manager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
