@@ -14,7 +14,7 @@ namespace log4net.ext123
 			<log4net>
 				<appender name='StringAppender' type='log4net.Tests.Appender.StringAppender'>
 					<layout type='log4net.ext123.PatternLayoutExt123'>
-						<conversionPattern value='%short-level - %message;' />
+						<conversionPattern value='%short-level: %message;' />
 					</layout>
 				</appender>
 				<root>
@@ -46,7 +46,7 @@ namespace log4net.ext123
 			log.Fatal(3);
 
 			var appender = (StringAppender)LogManager.GetRepository(repoName).GetAppenders()[0];
-			Assert.AreEqual("T - trace;D - Message;I - 55;W - 1;E - 2;F - 3;", appender.GetString());
+			Assert.AreEqual("T: trace;D: Message;I: 55;W: 1;E: 2;F: 3;", appender.GetString());
 		}
 	}
 }
