@@ -42,6 +42,7 @@
     <Compile Include="Log123.cs" />
     <Compile Include="Log123Manager.cs" />
     <Compile Include="PatternLayoutExt123.cs" />
+    <Compile Include="SmtpAppenderWithSubjectLayout.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
