@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="StatisticAppender.cs" />
     <Compile Include="Log123.cs" />
     <Compile Include="Log123Manager.cs" />
     <Compile Include="PatternLayoutExt123.cs" />
