@@ -9,9 +9,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
 [assembly: ComVisible(false)]
-
 [assembly: Guid("17b37337-4bc9-42e7-8881-0f1092d58cea")]
-
-[assembly: AssemblyVersion("1.1.1.*")]
+[assembly: AssemblyVersion("1.4.0.*")]
