@@ -1,7 +1,7 @@
 log4net.ext123
 ==============
 
-log4net extensions v.1.1.1
+log4net extensions v.1.3
 
 ## Class Log123Manager:
 - no more long initialization commands for static class loggers - use method Log123Manager.ClassLogger():
@@ -51,5 +51,50 @@ if (LOG.Logger.IsEnabledFor(Level.Trace))
 	...
 </appender>
 ```
- 
+
+## Class StatisticAppender
+- collects number of logging events for every log level. Is useful if an action needed, if there were warnings,
+e.g. send email before exit:
+```xml
+<appender name="Statistics" type="log4net.ext123.StatisticAppender" />
+<root>
+  <level value="ALL" />
+  <appender-ref ref="Statistics" />
+  ...
+</root>
+```
+```java
+// send an email if there were errors or warnings
+//
+StatisticAppender stat = StatisticAppender.getStatisticAppender();
+
+if (stat.getLevelCount(log4net.Core.Level.Fatal) < 0 &&
+	stat.getLevelCount(log4net.Core.Level.Error) > 0 ||
+	stat.getLevelCount(log4net.Core.Level.Warn) > 0)
+{
+	ITriggeringEventEvaluator prevSmtpTriggingEvaluator = null;
+	if (null != smtpAppender) {
+		prevSmtpTriggingEvaluator = smtpAppender.Evaluator;
+		smtpAppender.Evaluator = new AlwaysTrueLog4NetTriggeringEventEvaluator();
+	}
+
+	LOG.Warn("The generating finished with {0} errors and {1} warnings",
+		stat.getLevelCount(log4net.Core.Level.Error),
+		stat.getLevelCount(log4net.Core.Level.Warn) + 1 /*this is a warning as well*/);
+
+	if (null != smtpAppender)
+		smtpAppender.Evaluator = prevSmtpTriggingEvaluator;
+}
+```
+```java
+public class AlwaysTrueLog4NetTriggeringEventEvaluator : ITriggeringEventEvaluator
+{
+	public bool IsTriggeringEvent(LoggingEvent loggingEvent) {
+		return true;
+	}
+}
+
+private static ILog123 LOG = Log123Manager.ClassLogger();
+```
+
 yarick123@github.com
