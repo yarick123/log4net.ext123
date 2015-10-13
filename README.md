@@ -68,9 +68,9 @@ e.g. send email before exit:
 //
 StatisticAppender stat = StatisticAppender.getStatisticAppender();
 
-if (stat.getLevelCount(log4net.Core.Level.Fatal) < 0 &&
-	stat.getLevelCount(log4net.Core.Level.Error) > 0 ||
-	stat.getLevelCount(log4net.Core.Level.Warn) > 0)
+if (null != stat && stat.getLevelCount(log4net.Core.Level.Fatal) == 0 &&
+     (stat.getLevelCount(log4net.Core.Level.Error) > 0 ||
+      stat.getLevelCount(log4net.Core.Level.Warn)  > 0))
 {
 	ITriggeringEventEvaluator prevSmtpTriggingEvaluator = null;
 	if (null != smtpAppender) {
