@@ -1,7 +1,7 @@
 log4net.ext123
 ==============
 
-log4net extensions v.1.3
+log4net extensions v.1.4.2
 
 ## Class Log123Manager:
 - no more long initialization commands for static class loggers - use method Log123Manager.ClassLogger():
