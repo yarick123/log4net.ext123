@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>log4net.ext123</id>
+    <version>1.4.1</version>
+    <title>log4net.ext123</title>
+    <authors>yarick123@github.com</authors>
+    <owners>yarick123@github.com</owners>
+    <licenseUrl>https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</licenseUrl>
+    <projectUrl>https://github.com/yarick123/log4net.ext123</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      log4net extensions: shorter logger initialization, more suitable parameters order, trace
+      method, smtp appender with dynamic subject, statistics appender to get number of each log
+      event type
+    </description>
+    <releaseNotes>created nuget package</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>log4net logging log tracing logfiles</tags>
+    <!--dependencies>
+      <dependency id="log4net" version="2.0" />
+    </dependencies-->
+  </metadata>
+  <files>
+    <file src="bin\net20\log4net.ext123.dll" target="lib\net20\log4net.ext123.dll" />
+    <file src="bin\net20\log4net.ext123.pdb" target="lib\net20\log4net.ext123.pdb" />
+    <file src="bin\net30\log4net.ext123.dll" target="lib\net30\log4net.ext123.dll" />
+    <file src="bin\net30\log4net.ext123.pdb" target="lib\net30\log4net.ext123.pdb" />
+    <file src="bin\net40\log4net.ext123.dll" target="lib\net40\log4net.ext123.dll" />
+    <file src="bin\net40\log4net.ext123.pdb" target="lib\net40\log4net.ext123.pdb" />
+    <file src="bin\net45\log4net.ext123.dll" target="lib\net45\log4net.ext123.dll" />
+    <file src="bin\net45\log4net.ext123.pdb" target="lib\net45\log4net.ext123.pdb" />
+  </files>
+</package>
