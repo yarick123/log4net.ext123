@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using log4net.Appender;
 using log4net.Core;
 
@@ -91,7 +90,11 @@ namespace log4net.ext123
 		/// <returns>null if the appender does not exist</returns>
 		public static StatisticAppender getStatisticAppender(string name = null) {
 			var appenders = log4net.LogManager.GetRepository().GetAppenders();
-			return appenders.OfType<StatisticAppender>().Where(a => name == a.Name || null == name).First();
+			foreach (var a in appenders) {
+				if (a is StatisticAppender && (null == name || name == a.Name))
+					return (StatisticAppender) a;
+			}
+			return null;
 		}
 	}
 }
