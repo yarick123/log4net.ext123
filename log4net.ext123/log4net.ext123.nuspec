@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>log4net.ext123</id>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
     <title>log4net.ext123</title>
     <authors>yarick123@github.com</authors>
     <owners>yarick123@github.com</owners>
