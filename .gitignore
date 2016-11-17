@@ -6,3 +6,4 @@ Release/
 *.user
 *.suo
 /.vs/
+/log4net.ext123/log4net.ext123.*.nupkg
