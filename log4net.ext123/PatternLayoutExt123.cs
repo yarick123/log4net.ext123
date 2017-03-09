@@ -1,9 +1,9 @@
-using System;
-using System.IO;
 using log4net.Core;
 using log4net.Layout;
 using log4net.Layout.Pattern;
 using log4net.Util;
+using System;
+using System.IO;
 
 namespace log4net.ext123
 {
@@ -30,7 +30,7 @@ namespace log4net.ext123
 		{
 			myLevelNameLength = 1;
 			if (null == Option) return;
-			
+
 			string optStr = Option.Trim();
 			if (0 != optStr.Length) {
 				int lengthVal;
@@ -50,10 +50,10 @@ namespace log4net.ext123
 		private int myLevelNameLength = 1;
 	}
 
-	public class PatternLayoutExt123 : PatternLayout
+	public class PatternLayoutExt123 : DynamicPatternLayout
 	{
 		public PatternLayoutExt123() {
-			AddConverter(new ConverterInfo{Name = "short-level", Type = typeof(ShortLevelPatternConverter)});
+			AddConverter(new ConverterInfo { Name = "short-level", Type = typeof(ShortLevelPatternConverter) });
 		}
 	}
 }
