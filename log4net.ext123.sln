@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "log4net.ext123.net40", "log
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "log4net.ext123.net35", "log4net.ext123.net35\log4net.ext123.net35.csproj", "{53F53795-245B-4D49-AEE4-1792282AB68F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0D29C785-25A0-416F-88DC-99F9292FAFE7}"
+	ProjectSection(SolutionItems) = preProject
+		log4net.ext123.sln.vsspell = log4net.ext123.sln.vsspell
+		Rebracer.xml = Rebracer.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		log4net.ext123\log4net.ext123.projitems*{53f53795-245b-4d49-aee4-1792282ab68f}*SharedItemsImports = 4
